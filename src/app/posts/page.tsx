@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { FetchPostsResponse } from './types';
 
 export default async function Posts() {
@@ -9,7 +11,9 @@ export default async function Posts() {
   return (
     <ul>
       {posts.map((post) => (
-        <li key={post.id}>{post.title}</li>
+        <Link key={post.id} href={`/posts/${post.id}`}>
+          <li key={post.id}>{post.title}</li>
+        </Link>
       ))}
     </ul>
   );
