@@ -9,12 +9,15 @@ export default async function Posts() {
   const posts: FetchPostsResponse = await data.json();
 
   return (
-    <ul>
-      {posts.map((post) => (
-        <Link key={post.id} href={`/posts/${post.id}`}>
-          <li key={post.id}>{post.title}</li>
-        </Link>
-      ))}
-    </ul>
+    <main>
+      <h1 className="mb-4">Posts</h1>
+      <ul>
+        {posts.map((post) => (
+          <Link key={post.id} href={`/posts/${post.id}`}>
+            <li key={post.id}>{post.title}</li>
+          </Link>
+        ))}
+      </ul>
+    </main>
   );
 }

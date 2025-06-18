@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
+import { Comments, CommentsSkeleton } from './_components/comments';
 import { FetchPostResponse } from './types';
 
 export default async function Post({
@@ -17,5 +19,12 @@ export default async function Post({
 
   const post: FetchPostResponse = await data.json();
 
-  return <div>{post.title}</div>;
+  return (
+    <main>
+      <h1 className="mb-4">{post.title}</h1>
+      <Suspense fallback={<CommentsSkeleton />}>
+        <Comments postId={id} />
+      </Suspense>
+    </main>
+  );
 }
