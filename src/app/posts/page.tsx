@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { PostCreateButton } from './_components/post-create-button';
 import { FetchPostsResponse } from './types';
 
 export default async function Posts() {
@@ -11,6 +12,7 @@ export default async function Posts() {
   return (
     <main>
       <h1 className="mb-4">Posts</h1>
+      <PostCreateButton className="mb-2" />
       <ul>
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`}>
