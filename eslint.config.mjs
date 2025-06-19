@@ -1,4 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 import { dirname } from 'path';
@@ -17,6 +18,7 @@ const eslintConfig = [
     plugins: {
       'unused-imports': unusedImports,
       'simple-import-sort': simpleImportSort,
+      '@tanstack/query': pluginQuery,
     },
     rules: {
       'unused-imports/no-unused-imports': 'warn',
@@ -28,6 +30,7 @@ const eslintConfig = [
           allow: ['error'],
         },
       ],
+      '@tanstack/query/exhaustive-deps': 'error',
     },
   },
 ];
