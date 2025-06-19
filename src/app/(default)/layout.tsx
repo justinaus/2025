@@ -6,7 +6,7 @@ export default function DefaultLayout({
   return (
     <>
       <header>Header</header>
-      <main>{children}</main>
+      {children}
       <footer>Footer</footer>
     </>
   );
