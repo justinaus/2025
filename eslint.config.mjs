@@ -22,6 +22,12 @@ const eslintConfig = [
       'unused-imports/no-unused-imports': 'warn',
       'simple-import-sort/imports': 'warn',
       'simple-import-sort/exports': 'warn',
+      'no-console': [
+        'warn',
+        {
+          allow: ['error'],
+        },
+      ],
     },
   },
 ];
