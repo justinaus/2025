@@ -2,26 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { FetchTodosRequestParams, FetchTodosResponse } from './types';
-
-const fetchPosts = async ({
-  page,
-  limit,
-}: FetchTodosRequestParams): Promise<FetchTodosResponse> => {
-  let path = `https://jsonplaceholder.typicode.com/todos`;
-
-  if (page && limit) {
-    path += `?_page=${page}&_limit=${limit}`;
-  }
-
-  const response = await fetch(path);
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch posts');
-  }
-
-  return response.json();
-};
+import { fetchTodos } from '../../_lib/api';
 
 const LIMIT = 10;
 
@@ -35,9 +16,9 @@ export function TodosList() {
     // isFetchingNextPage,
     // status,
   } = useInfiniteQuery({
-    queryKey: ['posts'],
+    queryKey: ['todos'],
     queryFn: ({ pageParam = 1 }) =>
-      fetchPosts({ page: pageParam, limit: LIMIT }),
+      fetchTodos({ page: pageParam, limit: LIMIT }),
     getNextPageParam: (lastPage, allPages) => {
       // jsonplaceholder는 총 100개의 포스트가 있다고 가정
       // 실제로는 API 응답에서 hasNextPage나 totalCount를 확인해야 합니다
