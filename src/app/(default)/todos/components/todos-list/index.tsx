@@ -2,7 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { fetchTodos } from '../../_lib/api';
+import { fetchTodos } from '../../lib/api';
 
 const LIMIT = 10;
 

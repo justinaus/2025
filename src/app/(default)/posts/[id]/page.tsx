@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { Comments, CommentsSkeleton } from './_components/comments';
+import { Comments, CommentsSkeleton } from './components/comments';
 import { FetchPostResponse } from './types';
 
 export default async function Post({

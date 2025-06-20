@@ -1,4 +1,4 @@
-import { TodosList } from './_components/todos-list';
+import { TodosList } from './components/todos-list';
 
 export default async function Todos() {
   return (

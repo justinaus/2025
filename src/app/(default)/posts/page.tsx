@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PostCreateButton } from './_components/post-create-button';
+import { PostCreateButton } from './components/post-create-button';
 import { FetchPostsResponse } from './types';
 
 export default async function Posts() {
