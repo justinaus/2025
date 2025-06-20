@@ -2,10 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { fetchTodos } from '../../lib/api';
-import { FetchTodosResponse } from '../../types';
-
-const LIMIT = 10;
+import { DEFAULT_LIMIT, fetchTodos, FetchTodosResponse } from '../../lib/api';
 
 type Props = {
   initialData: FetchTodosResponse;
@@ -23,11 +20,11 @@ export function TodosList({ initialData }: Props) {
   } = useInfiniteQuery({
     queryKey: ['todos'],
     queryFn: ({ pageParam = 2 }) =>
-      fetchTodos({ page: pageParam, limit: LIMIT }),
+      fetchTodos({ page: pageParam, limit: DEFAULT_LIMIT }),
     getNextPageParam: (lastPage, allPages) => {
       // jsonplaceholder는 총 100개의 포스트가 있다고 가정
       // 실제로는 API 응답에서 hasNextPage나 totalCount를 확인해야 합니다
-      if (lastPage.length < LIMIT) {
+      if (lastPage.length < DEFAULT_LIMIT) {
         return undefined; // 더 이상 페이지가 없음
       }
 

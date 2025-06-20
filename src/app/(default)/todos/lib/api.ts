@@ -1,5 +1,3 @@
-import { FetchTodosRequestParams, FetchTodosResponse } from '../types';
-
 export const fetchTodos = async ({
   page,
   limit,
@@ -18,3 +16,17 @@ export const fetchTodos = async ({
 
   return response.json();
 };
+
+export type FetchTodosResponse = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}[];
+
+export type FetchTodosRequestParams = {
+  page?: number;
+  limit?: number;
+};
+
+export const DEFAULT_LIMIT = 10;
