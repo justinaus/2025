@@ -3,10 +3,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { fetchTodos } from '../../lib/api';
+import { FetchTodosResponse } from '../../types';
 
 const LIMIT = 10;
 
-export function TodosList() {
+type Props = {
+  initialData: FetchTodosResponse;
+};
+
+export function TodosList({ initialData }: Props) {
   const {
     data,
     // error,
@@ -17,7 +22,7 @@ export function TodosList() {
     // status,
   } = useInfiniteQuery({
     queryKey: ['todos'],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam = 2 }) =>
       fetchTodos({ page: pageParam, limit: LIMIT }),
     getNextPageParam: (lastPage, allPages) => {
       // jsonplaceholder는 총 100개의 포스트가 있다고 가정
@@ -28,7 +33,11 @@ export function TodosList() {
 
       return allPages.length + 1;
     },
-    initialPageParam: 1,
+    initialPageParam: 2, // initialData가 1페이지이므로 다음 페이지부터 시작
+    initialData: {
+      pages: [initialData],
+      pageParams: [1],
+    },
   });
 
   const todos = data?.pages.flat() || [];
