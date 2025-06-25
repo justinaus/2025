@@ -4,10 +4,10 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <header>Header</header>
-      {children}
-      <footer>Footer</footer>
-    </>
+    <div className="flex min-h-screen flex-col">
+      <header className="bg-amber-300">Header</header>
+      <div className="flex-1">{children}</div>
+      <footer className="bg-blue-300">Footer</footer>
+    </div>
   );
 }
