@@ -10,6 +10,7 @@
   },
   "editor.quickSuggestions": {
     "strings": "on"
-  }
+  },
+  "tailwindCSS.classFunctions": ["cva", "cx"]
   // "prettier.singleQuote": true
 }
