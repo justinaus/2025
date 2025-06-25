@@ -2,6 +2,8 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
+import { Button } from '@/components/ui/button';
+
 import { DEFAULT_LIMIT, fetchTodos, FetchTodosResponse } from '../../lib/api';
 
 type Props = {
@@ -47,9 +49,15 @@ export function TodosList({ initialData }: Props) {
         ))}
       </ul>
       {hasNextPage && (
-        <button onClick={() => fetchNextPage()} disabled={isFetching}>
+        <Button
+          variant={'filled'}
+          size={'md'}
+          className="border-2"
+          onClick={() => fetchNextPage()}
+          disabled={isFetching}
+        >
           More
-        </button>
+        </Button>
       )}
     </div>
   );
