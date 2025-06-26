@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Count } from '@/components/common/count';
+
 import { PostCreateButton } from './components/post-create-button';
 import { FetchPostsResponse } from './types';
 
@@ -20,6 +22,7 @@ export default async function Posts() {
           </Link>
         ))}
       </ul>
+      <Count />
     </main>
   );
 }
