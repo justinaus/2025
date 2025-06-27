@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { FetchTodosResponse } from "../../lib/api";
 import { TodosList } from "./index";
 
-// TanStack Query 모킹
+const mockUseInfiniteQuery: any = vi.fn();
 vi.mock("@tanstack/react-query", () => ({
-  useInfiniteQuery: vi.fn(),
+  useInfiniteQuery: (...args: any[]) => mockUseInfiniteQuery(...args),
 }));
 
 // Button 컴포넌트 모킹
@@ -31,8 +33,7 @@ describe("TodosList Component", () => {
   });
 
   it("should render initial todos", () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: true,
@@ -46,8 +47,7 @@ describe("TodosList Component", () => {
   });
 
   it('should render "More" button when hasNextPage is true', () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: true,
@@ -62,8 +62,7 @@ describe("TodosList Component", () => {
   });
 
   it('should not render "More" button when hasNextPage is false', () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: false,
@@ -78,8 +77,7 @@ describe("TodosList Component", () => {
   });
 
   it('should call fetchNextPage when "More" button is clicked', () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: true,
@@ -95,8 +93,7 @@ describe("TodosList Component", () => {
   });
 
   it('should disable "More" button when isFetching is true', () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: true,
@@ -115,8 +112,7 @@ describe("TodosList Component", () => {
       { userId: 1, id: 4, title: "Todo 4", completed: true },
     ];
 
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData, secondPageData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: true,
@@ -132,8 +128,7 @@ describe("TodosList Component", () => {
   });
 
   it("should render empty state when no todos", () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [[]] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: false,
@@ -146,8 +141,7 @@ describe("TodosList Component", () => {
   });
 
   it("should render todos as list items", () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: { pages: [mockInitialData] },
       fetchNextPage: mockFetchNextPage,
       hasNextPage: false,
@@ -161,8 +155,7 @@ describe("TodosList Component", () => {
   });
 
   it("should handle loading state", () => {
-    const { useInfiniteQuery } = require("@tanstack/react-query");
-    useInfiniteQuery.mockReturnValue({
+    mockUseInfiniteQuery.mockReturnValue({
       data: undefined,
       fetchNextPage: mockFetchNextPage,
       hasNextPage: false,

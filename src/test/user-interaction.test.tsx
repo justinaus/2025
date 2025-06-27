@@ -103,7 +103,8 @@ describe("User Interaction Tests", () => {
 
     // 복사/붙여넣기 테스트
     await user.type(nameInput, "Test Name");
-    await user.selectOptions(nameInput, "Test Name");
+    await user.click(nameInput);
+    await user.keyboard("{Control>}a{/Control}"); // Ctrl+A로 전체 선택
     await user.copy();
     await user.click(emailInput);
     await user.paste();

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
-import { DEFAULT_LIMIT, fetchTodos, FetchTodosResponse } from '../../lib/api';
+import { DEFAULT_LIMIT, fetchTodos, FetchTodosResponse } from "../../lib/api";
 
 type Props = {
   initialData: FetchTodosResponse;
@@ -20,7 +20,7 @@ export function TodosList({ initialData }: Props) {
     // isFetchingNextPage,
     // status,
   } = useInfiniteQuery({
-    queryKey: ['todos'],
+    queryKey: ["todos"],
     queryFn: ({ pageParam = 2 }) =>
       fetchTodos({ page: pageParam, limit: DEFAULT_LIMIT }),
     getNextPageParam: (lastPage, allPages) => {
@@ -50,8 +50,6 @@ export function TodosList({ initialData }: Props) {
       </ul>
       {hasNextPage && (
         <Button
-          variant={'filled'}
-          size={'md'}
           className="border-2"
           onClick={() => fetchNextPage()}
           disabled={isFetching}
