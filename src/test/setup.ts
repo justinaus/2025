@@ -1,9 +1,15 @@
+import "@testing-library/jest-dom";
+
+import { cleanup } from "@testing-library/react";
+import React from "react";
 import { afterAll, afterEach, beforeAll, vi } from "vitest";
+
+// React를 전역으로 설정
+global.React = React;
 
 // 각 테스트 후 cleanup
 afterEach(() => {
-  // DOM cleanup
-  document.body.innerHTML = "";
+  cleanup();
 });
 
 // 전역 fetch 모킹
